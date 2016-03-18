@@ -25,6 +25,11 @@ public class create : MonoBehaviour {
     //variable para cambiar entre sprites
     private bool TypeOfAsteroid = true;
 
+	//tiempo para inciar el juego
+	private float TimeToBegin = 0.0f;
+	//fire text
+	public GameObject fireText;
+
     void Start () {
 	
 	}
@@ -65,39 +70,40 @@ public class create : MonoBehaviour {
         Instantiate(NOS, posicionNOS, transform.rotation);
     }
 	void Update () {
-        //tiempos de creacion
-        timeAsteroid += Time.deltaTime;
-        
-        if (timeAsteroid > t)
-        {
-            CreateAsteroids();
-            timeAsteroid = 0.0f;
-            if (t > 0.3f)
-            {
-                t -= 0.001f;
-            }
+		if (TimeToBegin > 5.0f) { //tiempo para comenzar el juego
+			//tiempos de creacion
+			timeAsteroid += Time.deltaTime;
+	        
+			if (timeAsteroid > t) {
+				CreateAsteroids ();
+				timeAsteroid = 0.0f;
+				if (t > 0.3f) {
+					t -= 0.001f;
+				}
 
-        }
+			}
 
-        timeMonedas += Time.deltaTime;
-        if (timeMonedas > 1f)
-        {
-            CreateCoins();
-            timeMonedas = 0.0f;
-        }
+			timeMonedas += Time.deltaTime;
+			if (timeMonedas > 1f) {
+				CreateCoins ();
+				timeMonedas = 0.0f;
+			}
 
-        timeAmmo += Time.deltaTime;
-        if (timeAmmo > 5f)
-        {
-            CreateAmmo();
-            timeAmmo = 0.0f;
-        }
+			timeAmmo += Time.deltaTime;
+			if (timeAmmo > 5f) {
+				CreateAmmo ();
+				timeAmmo = 0.0f;
+			}
 
-        timeNOS += Time.deltaTime;
-        if (timeNOS > 2f)
-        {
-            CreateNOS();
-            timeNOS = 0.0f;
-        }
+			timeNOS += Time.deltaTime;
+			if (timeNOS > 2f) {
+				CreateNOS ();
+				timeNOS = 0.0f;
+			}
+			fireText.GetComponent<MeshRenderer> ().enabled = false;
+		} else {
+			TimeToBegin += Time.deltaTime;
+			fireText.GetComponent<MeshRenderer> ().enabled = true;
+		}
     }
 }

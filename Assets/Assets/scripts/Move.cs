@@ -54,14 +54,14 @@ public class Move : MonoBehaviour {
 
     void OnMouseDownDown()
     {
-        transform.Translate(0, -1 * 5.0f * Time.deltaTime, 0);
+        transform.Translate(0, -1 * 7.0f * Time.deltaTime, 0);
         //thisBody.AddForce(new Vector2(0, 1 * -movimiento), ForceMode2D.Impulse);
     }
 
 
     void OnMouseDownUp()
     {
-        transform.Translate(0, 1 * 5.0f * Time.deltaTime, 0);
+        transform.Translate(0, 1 * 7.0f * Time.deltaTime, 0);
         //thisBody.AddForce(new Vector2(0, 1 * movimiento), ForceMode2D.Impulse);
     }
 }

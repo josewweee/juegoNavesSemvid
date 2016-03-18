@@ -3,8 +3,10 @@ using System.Collections;
 
 public class TeleportWhenLimit : MonoBehaviour {
 
+	private GameObject jugador;
+
 	void Start () {
-	
+		jugador = this.gameObject;
 	}
 	
 	void Update () {
@@ -15,12 +17,12 @@ public class TeleportWhenLimit : MonoBehaviour {
     {
         if(coll.gameObject.tag == "TopLimit")
         {
-            transform.position = new Vector3(transform.position.x, -11.86f, transform.position.z);
+			jugador.GetComponent<Rigidbody2D> ().AddForce(new Vector2 (0f, -1f), ForceMode2D.Impulse);
         }
         
         if(coll.gameObject.tag == "BottomLimit")
         {
-            transform.position = new Vector3(transform.position.x, -3.85f, transform.position.z);
+			jugador.GetComponent<Rigidbody2D> ().AddForce(new Vector2 (0f, 1f), ForceMode2D.Impulse);
         }
     }
 }

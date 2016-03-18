@@ -12,6 +12,7 @@ public class TakeItems : MonoBehaviour {
     public bool HavingAmmo = false;
     public bool HavingCoins = false;
     public bool HavingBoost = false;
+	public bool HavingDoubleBoost = false;
 
 	void Start () {
 
@@ -37,6 +38,12 @@ public class TakeItems : MonoBehaviour {
         HavingBoost = value;
     }
 
+	public void setDoubleBoost(bool value)
+	{
+		HavingDoubleBoost = value;
+	}
+		
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         //hiting a coin
@@ -56,14 +63,24 @@ public class TakeItems : MonoBehaviour {
             HavingAmmo = true;
             Destroy(coll.gameObject);
         }
+			
         //hiting a boost
-        if (coll.gameObject.tag == "Boost")
-        {
+		if (coll.gameObject.tag == "Boost") {
+			
 
-            GetComponent<AudioSource>().clip = BoostClip;
-            GetComponent<AudioSource>().Play();
-            HavingBoost = true;
-            Destroy(coll.gameObject);
+			if (HavingBoost == true) {
+				GetComponent<AudioSource> ().clip = BoostClip;
+				GetComponent<AudioSource> ().Play ();
+				HavingDoubleBoost = true;
+				//HavingBoost = false;
+				Destroy (coll.gameObject);
+			}else{
+				GetComponent<AudioSource> ().clip = BoostClip;
+				GetComponent<AudioSource> ().Play ();
+				HavingBoost = true;
+				//HavingDoubleBoost = false;
+				Destroy (coll.gameObject);
+			}
         }
     }
 }

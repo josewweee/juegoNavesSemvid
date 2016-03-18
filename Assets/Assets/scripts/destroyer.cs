@@ -5,7 +5,7 @@ public class destroyer : MonoBehaviour {
 
 	
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
